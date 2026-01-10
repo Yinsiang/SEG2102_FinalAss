@@ -1,0 +1,245 @@
+/*MySQL
+Database & Table Creation:  
+*/
+CREATE TABLE customers (  
+
+    customer_id INT PRIMARY KEY,  
+
+    name VARCHAR(100),  
+
+    email VARCHAR(100),  
+
+    city VARCHAR(50),  
+
+    join_date DATE,  
+
+    total_orders INT  
+
+);  
+
+ 
+/*Data Insertion:  */
+
+INSERT INTO customers VALUES  
+
+(1, 'Alice Johnson', 'alice@example.com', 'New York', '2023-01-15', 12),  
+
+(2, 'Bob Smith', 'bob@example.com', 'Los Angeles', '2023-02-20', 8),  
+
+(3, 'Charlie Brown', 'charlie@example.com', 'Chicago', '2023-03-10', 15),  
+
+(4, 'Diana Prince', 'diana@example.com', 'Miami', '2023-04-05', 22),  
+
+(5, 'Eve Davis', 'eve@example.com', 'Seattle', '2023-05-12', 7),  
+
+(6, 'Frank Miller', 'frank@example.com', 'Boston', '2023-06-18', 30),  
+
+(7, 'Grace Lee', 'grace@example.com', 'Austin', '2023-07-22', 14),  
+
+(8, 'Henry Ford', 'henry@example.com', 'Detroit', '2023-08-30', 9),  
+
+(9, 'Ivy Chen', 'ivy@example.com', 'San Francisco', '2023-09-11', 18),  
+
+(10, 'Jack Wilson', 'jack@example.com', 'Denver', '2023-10-05', 25),  
+
+(11, 'Katherine Kim', 'kate@example.com', 'Phoenix', '2023-11-19', 11),  
+
+(12, 'Leo Garcia', 'leo@example.com', 'Houston', '2023-12-01', 13),  
+
+(13, 'Mona Patel', 'mona@example.com', 'Atlanta', '2024-01-14', 6),  
+
+(14, 'Nina Lopez', 'nina@example.com', 'Dallas', '2024-02-23', 20),  
+
+(15, 'Oscar Martinez', 'oscar@example.com', 'Las Vegas', '2024-03-07', 17);  
+
+ 
+
+/*Data Verification:  */
+
+SELECT * FROM customers;  
+
+SELECT COUNT(*) AS before_count FROM customers;  
+
+Data Loss Simulation:  
+
+DROP TABLE customers;  
+
+  
+
+/*Deletion Verification:  */
+
+SELECT * FROM customers;  
+
+SELECT COUNT(*) AS after_count FROM customers;  
+
+SHOW TABLES;  
+
+  
+
+/*Backup Command:  */
+
+mysqldump -u root -p test_db > "C:\backup\mysql_backup.sql"  
+
+  
+
+/*Restoration Verification:  */
+
+SELECT COUNT(*) AS after_count FROM customers;  
+
+  
+
+/*PostgreSQL  
+
+Database Creation:  */
+
+CREATE DATABASE tests_db;  
+
+  
+
+/*Connect to Database:  */
+
+\c tests_db  
+
+Table Creation:  
+
+CREATE TABLE products (  
+
+    product_id SERIAL PRIMARY KEY,  
+
+    name VARCHAR(100) NOT NULL,  
+
+    category VARCHAR(50),  
+
+    price DECIMAL(10,2),  
+
+    stock_quantity INT,  
+
+    supplier VARCHAR(100)  
+
+);  
+
+ 
+
+/*Data Insertion:  */
+
+INSERT INTO products (name, category, price, stock_quantity, supplier) VALUES  
+
+('Laptop Pro X1', 'Electronics', 1299.99, 45, 'TechSupply Inc.'),  
+
+('Ergonomic Office Chair', 'Furniture', 349.99, 120, 'ComfortWorks Ltd.'),  
+
+('Wireless Mouse', 'Electronics', 29.99, 300, 'Peripherals Co.'),  
+
+('Desk Lamp LED', 'Home', 24.50, 250, 'HomeGoods Corp.'),  
+
+('Stainless Steel Water Bottle', 'Kitchen', 19.99, 500, 'Ecolife Brands'),  
+
+('Noise-Cancelling Headphones', 'Electronics', 199.99, 80, 'SoundTech'),  
+
+('Yoga Hat Premium', 'Fitness', 34.99, 200, 'FitGear'),  
+
+('Smartphone XYZ', 'Electronics', 899.99, 60, 'MobileTech Global'),  
+
+('Coffee Maker', 'Kitchen', 89.99, 150, 'BrewMasters'),  
+
+('Backpack Waterproof', 'Travel', 59.99, 180, 'TravelPro'),  
+
+('External SSD 1TB', 'Electronics', 129.99, 100, 'DataStore Inc.'),  
+
+('Plant Pot Ceramic', 'Home', 15.99, 400, 'GreenThumb'),  
+
+('Running Shoes', 'Fitness', 119.99, 90, 'SportFoot Co.'),  
+
+('Bluetooth Speaker', 'Electronics', 79.99, 220, 'AudioPro'),  
+
+('Desk Organizer Set', 'Office', 39.99, 320, 'OfficeEssentials');  
+
+  
+
+/*Data Verification:  */
+
+SELECT * FROM products;  
+
+SELECT COUNT(*) FROM products;  
+
+  
+
+/*Simulation Database Creation:  */
+
+CREATE DATABASE tests_db_simulation;  
+
+\c tests_db_simulation  
+
+  
+
+/*Data Loss Simulation:  */
+
+DROP SCHEMA public CASCADE;  
+
+CREATE SCHEMA public;  
+
+GRANT ALL ON SCHEMA public TO postgres;  
+
+GRANT ALL ON SCHEMA public TO public;  
+
+Deletion Verification:  
+
+\dt  
+
+SELECT * FROM backup_state;  
+
+SELECT count(*) as tables_after_delete FROM pg_tables WHERE schemaname = 'public';  
+
+  
+
+/*Backup Command:  */
+
+"C:\Program Files\PostgreSQL\18\bin\pg_dump.exe" -U postgres tests_db > "C:\backup\tests_db.sql"  
+
+  
+
+/*Restoration Command:  */
+
+"C:\Program Files\PostgreSQL\18\bin\psql.exe" -U postgres -d tests_db_simulation -f "C:\backup\tests_db.sql"  
+
+  
+
+/*Final Verification:  */
+
+\dt  
+
+SELECT * FROM products;  
+
+SELECT COUNT(*) FROM products;  
+
+SELECT count(*) as tables_after_restore FROM pg_tables WHERE schemaname = 'public';  
+
+  
+
+/*OS/ Shell Commands  
+
+Backup Directory Management:  */
+
+mkdir C:\backup  
+
+dir "C:\backup" dir "C:\backup\tests_db.sql"  
+
+dir "C:\Program Files\PostgreSQL*" /b  
+
+ 
+
+  
+
+/*Backup Sucess Verification:  */
+
+echo Backup successful!  
+
+  
+
+/*File Content Verification:  */
+
+find "-- PostgreSQL" "C:\backup\tests_db.sql" 
+
+ 
+
+ 
