@@ -241,5 +241,27 @@ echo Backup successful!
 find "-- PostgreSQL" "C:\backup\tests_db.sql" 
 
  
+MongoDB: 
 
+#Backup 
+
+mongodump --db test_nosql --out C:\backup\mongo_backup 
+
+ 
+
+#Simulate data loss 
+
+use test_nosql db.products.drop() 
+
+ 
+
+#Restore 
+
+mongorestore C:\backup\mongo_backup  
+
+ 
+
+Verification:  
+
+db.products.countDocuments() 
  
